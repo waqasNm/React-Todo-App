@@ -51,7 +51,13 @@ class App extends Component {
   delItem(key){
     console.log(key)
     const rootRef = firebase.database().ref();
-    rootRef.child(`data/${this.state.data[key].id}`).remove();    
+    console.log(`data/${this.state.data[key].id}`)
+    if(this.state.data.length == 1){
+      rootRef.child(`data/${this.state.data[key].id}`).remove();    
+      this.setState({data:[]})
+    }else{
+      rootRef.child(`data/${this.state.data[key].id}`).remove();          
+    }
   }
   editItem(key){
     console.log(key);
